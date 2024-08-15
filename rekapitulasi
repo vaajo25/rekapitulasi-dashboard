@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Rekapitulasi 2024</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #ccc 3px solid;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .dashboard {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            font-size: 20px;
+            color: #333;
+        }
+        .section p {
+            font-size: 16px;
+            color: #666;
+        }
+        .data {
+            margin-top: 10px;
+        }
+        .data ul {
+            list-style: none;
+            padding: 0;
+        }
+        .data li {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+        .data .item-title {
+            font-weight: bold;
+        }
+        .data .item-value {
+            float: right;
+        }
+        canvas {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Rekapitulasi 2024</h1>
+    </header>
+    <div class="container">
+        <div class="dashboard">
+            <div class="section">
+           <h2>Semester 1</h2>
+                <p>Target: <strong>100%</strong></p>
+                <p>Realisasi: <strong>112%</strong></p>
+                <div class="data">
+                    <h3>Data Semester 1</h3>
+                    <ul>
+                        <li><span class="item-title">Siaran Pers Unit:</span> <span class="item-value">133,33%</span></li>
+                        <li><span class="item-title">Draft Konten:</span> <span class="item-value">104%</span></li>
+                        <li><span class="item-title">Pengelolaan 
+                       Akun Influencer Media Sosial Non-Korporat:</span> <span class="item-value">100%</span></li>
+                        <li><span class="item-title">Pengelolaan Komunikasi Internal:</span> <span class="item-value">100%</span></li>
+                        <li><span class="item-title">Skoring Hasil Publikasi Siaran Pers Unit:</span> <span class="item-value">136%</span></li>
+                        <li><span class="item-title">Pengelolaan Informasi Publik:</span> <span class="item-value">100%</span></li>
+                    </ul>
+                </div>
+                <canvas id="semester1Chart"></canvas>
+            </div>
+            <div class="section">
+                <h2>Semester 2</h2>
+                <p>Target: <strong>100%</strong></p>
+                <p>Realisasi: <strong>0%</strong></p>
+                <div class="data">
+                    <h3>Data Semester 2</h3>
+                    <ul>
+                        <li><span class="item-title">Siaran Pers Unit:</span> <span class="item-value">16,67%</span></li>
+                        <li><span class="item-title">Draft Konten:</span> <span class="item-value">0%</span></li>
+                        <li><span class="item-title">Pengelolaan Akun Influencer Media Sosial Non-Korporat:</span> <span class="item-value">0%</span></li>
+                        <li><span class="item-title">Pengelolaan Komunikasi Internal:</span> <span class="item-value">0%</span></li>
+                        <li><span class="item-title">Skoring Hasil Publikasi Siaran Pers Unit:</span> <span class="item-value">17%</span></li>
+                        <li><span class="item-title">Pengelolaan Informasi Publik:</span> <span class="item-value">16,67%</span></li>
+                    </ul>
+                </div>
+                <canvas id="semester2Chart"></canvas>
+            </div>
+        </div>
+    </div>
+    <!-- Import Chart.js and chartjs-plugin-datalabels from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <script>
+        // Create Semester 1 Chart
+        const ctx1 = document.getElementById('semester1Chart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Siaran Pers Unit', 'Draft Konten', 'Pengelolaan Akun Influencer Media Sosial Non-Korporat', 'Pengelolaan Komunikasi Internal', 'Skoring Hasil Publikasi Siaran Pers Unit', 'Pengelolaan Informasi Publik'],
+                datasets: [{
+                    label: 'Persentase Semester 1',
+                    data: [133.33, 104, 100, 100, 136, 100],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: '#333',
+                        anchor: 'end',
+                        align: 'top',
+                        formatter: (value) => `${value.toFixed(2)}%`,
+                        font: {
+                            weight: 'bold'
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 150
+                    }
+                }
+            }
+        });
+
+        // Create Semester 2 Chart
+        const ctx2 = document.getElementById('semester2Chart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Siaran Pers Unit', 'Draft Konten', 'Pengelolaan Akun Influencer Media Sosial Non-Korporat', 'Pengelolaan Komunikasi Internal', 'Skoring Hasil Publikasi Siaran Pers Unit', 'Pengelolaan Informasi Publik'],
+                datasets: [{
+                    label: 'Persentase Semester 2',
+                    data: [16.67, 0, 0, 0, 17, 16.67],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: '#333',
+                        anchor: 'end',
+                        align: 'top',
+                        formatter: (value) => `${value.toFixed(2)}%`,
+                        font: {
+                            weight: 'bold'
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 150
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
